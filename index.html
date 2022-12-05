@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar sticky-top navbar-light bg-white" id="nav">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <a class="navbar-brand" href="" id="navbarNombre"></a>
+        <img src="img/pokedex2.png" id="imagenNav" alt="" />
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="botonSiguiente"
+          onclick="direccion(siguienteLista),numeroPagina(true)"
+        >
+          siguiente
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="botonAnterior"
+          onclick="direccion(listaAnterior),numeroPagina(false)"
+        >
+          Anterior
+        </button>
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          id="selectorPagina"
+        >
+          <option selected>Seleciona Pagina</option>
+        </select>
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="irAPagina"
+          onclick="irAPagina()"
+        >
+          Ir
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="botonVolver"
+          onclick="botonVolver()"
+          hidden
+        >
+          volver
+        </button>
+      </nav>
+    </nav>
+
+    <!--<h1>lista inicial pokemones(nombres)</h1>-
+    <input
+      type="button"
+      id="botonSiguiente"
+      value="siguiente"
+      onclick="direccion(siguienteLista)"
+    /><br /><br />
+    <input
+      type="button"
+      id="botonAnterior"
+      value="Anterior"
+      onclick="direccion(listaAnterior)"
+      hidden
+    /><br /><br />
+    -->
+
+    <div class="container" id="contendenorPokemones">
+      <div class="row align-items-start" id="fila"></div>
+      <div class="row align-items-center" id="fila"></div>
+      <div class="row align-items-center" id="fila"></div>
+      <div class="row align-items-center" id="fila"></div>
+      <div class="row align-items-end" id="fila"></div>
+    </div>
+
+    <div id="contendenorPokemones"></div>
+
+    <div class="container" id="pokemonSelecionado" hidden>
+      <div class="row align-items-center" id="seleccion"></div>
+      <img src="" id="imagenSelecionada" />
+
+      <div id="datosPokemon">
+        <p id="nombrePoke">nombrePoke</p>
+        <p id="tipo">tipo</p>
+        <p id="habilidad">habilidad</p>
+        <p id="pesoPoke">peso</p>
+        <p id="alturaPoke">altura</p>
+      </div>
+    </div>
+  </body>
+
+  <script src="src/index.js"></script>
+</html>
