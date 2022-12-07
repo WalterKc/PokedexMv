@@ -17,20 +17,10 @@
         <a class="navbar-brand" href="" id="navbarNombre"></a>
         <img src="img/pokedex2.png" id="imagenNav" alt="" />
 
-        <button
-          type="button"
-          class="btn btn-primary"
-          id="botonSiguiente"
-          onclick="direccion(siguienteLista),numeroPagina(true)"
-        >
+        <button type="button" class="btn btn-primary" id="botonSiguiente">
           siguiente
         </button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          id="botonAnterior"
-          onclick="direccion(listaAnterior),numeroPagina(false)"
-        >
+        <button type="button" class="btn btn-primary" id="botonAnterior">
           Anterior
         </button>
         <select
@@ -60,22 +50,6 @@
       </nav>
     </nav>
 
-    <!--<h1>lista inicial pokemones(nombres)</h1>-
-    <input
-      type="button"
-      id="botonSiguiente"
-      value="siguiente"
-      onclick="direccion(siguienteLista)"
-    /><br /><br />
-    <input
-      type="button"
-      id="botonAnterior"
-      value="Anterior"
-      onclick="direccion(listaAnterior)"
-      hidden
-    /><br /><br />
-    -->
-
     <div class="container" id="contendenorPokemones">
       <div class="row align-items-start" id="fila"></div>
       <div class="row align-items-center" id="fila"></div>
@@ -100,5 +74,8 @@
     </div>
   </body>
 
-  <script src="src/index.js"></script>
+  <!--<script src="src/index.js"></script>-->
+  <script src="src/Fetch principal.js" type="module"></script>
+  <script src="src/organizadorDePokemons.js" type="module"></script>
+  <script src="src/botones y eventos.js" type="module"></script>
 </html>
