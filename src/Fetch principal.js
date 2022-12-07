@@ -69,8 +69,6 @@ export function llamarPokemones(direccion) {
       ordenarPokemones(filas);
 
       obtenerTodosLosDatosDeLosPokemonsAMostrar(arrayDatos);
-      console.log(siguienteLista);
-      console.log(primeraDireccion);
     })
 
     .catch((error) => console.error("fallo ALGO", error));

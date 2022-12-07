@@ -68,12 +68,10 @@ function direccion(direccion) {
 function botonSiguientePagina() {
   llamarPokemones(siguienteLista);
   numeroPagina(true);
-  console.log(paginaNumero);
 }
 function botonAnteriorPagina() {
   llamarPokemones(listaAnterior);
   numeroPagina(false);
-  console.log(paginaNumero);
 }
 document.querySelector("#botonSiguiente").onclick = botonSiguientePagina;
 document.querySelector("#botonAnterior").onclick = botonAnteriorPagina;
