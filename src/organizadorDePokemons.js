@@ -1,4 +1,4 @@
-import { todosLosDatos } from "./Fetch principal.js";
+import { todosLosDatos } from "./index.js";
 export function crearPaginasDePokemons(cantidadDePaginas) {
   let paginas = document.querySelector("#selectorPagina");
   for (let i = 0; i < cantidadDePaginas; i++) {

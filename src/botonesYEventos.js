@@ -3,7 +3,7 @@ import {
   siguienteLista,
   listaAnterior,
   llamarPokemones,
-} from "./Fetch principal.js";
+} from "./index.js";
 
 let paginaNumero = 1;
 function informacionDePokemon(pokemonSelecionado) {
