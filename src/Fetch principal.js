@@ -19,15 +19,6 @@ import {
   ordenarPokemones,
   obtenerTodosLosDatosDeLosPokemonsAMostrar,
 } from "./organizadorDePokemons.js";
-/*
-Hay que importar
-crear lista LISTO
-colocarpokemonsenlalista LISTO
-crearpaginasdepokemons LISTO
-ordenarpokemones LISTO
-obtenerTodosLosDatosDeLosPokemonsAMostrar LISTO
-
-*/
 
 export function llamarPokemones(direccion) {
   fetch(direccion)
