@@ -89,9 +89,6 @@ function numeroPagina(avanzaORetrocede) {
   }
 }
 
-//document.querySelector("#botonSiguiente").onclick = numeroPagina(false);
-//document.querySelector("#botonAnterior").onclick = numeroPagina(true);
-
 function irAPagina() {
   let paginas = document.querySelector("#selectorPagina");
   console.log(Number(paginas.value));
