@@ -1,11 +1,4 @@
-import {
-  contendenorPokemones,
-  siguienteLista,
-  listaAnterior,
-  llamarPokemones,
-} from "./index.js";
-
-let paginaNumero = 1;
+import { contendenorPokemones } from "../Cambio de pagina/Logica de paginacion/CreoPokedex.js";
 function informacionDePokemon(pokemonSelecionado) {
   fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonSelecionado + "/")
     .then((respuesta) => respuesta.json())
@@ -38,8 +31,7 @@ function informacionDePokemon(pokemonSelecionado) {
     })
     .catch((error) => console.error("fallo", error));
 }
-
-function seleccionarPokemon(event) {
+export function seleccionarPokemon(event) {
   let valorAEnviar = "";
 
   if (event.target.innerText === "") {
@@ -51,54 +43,3 @@ function seleccionarPokemon(event) {
   }
   informacionDePokemon(valorAEnviar);
 }
-
-function botonVolver() {
-  contendenorPokemones.hidden = false;
-  document.querySelector("#pokemonSelecionado").hidden = true;
-
-  document.querySelector("#botonAnterior").hidden = false;
-  document.querySelector("#botonSiguiente").hidden = false;
-  document.querySelector("#botonVolver").hidden = true;
-}
-document.querySelector("#botonVolver").onclick = botonVolver;
-//QUEDO INUTIL ESTE
-function direccion(direccion) {
-  llamarPokemones(direccion);
-}
-function botonSiguientePagina() {
-  llamarPokemones(siguienteLista);
-  numeroPagina(true);
-}
-function botonAnteriorPagina() {
-  llamarPokemones(listaAnterior);
-  numeroPagina(false);
-}
-document.querySelector("#botonSiguiente").onclick = botonSiguientePagina;
-document.querySelector("#botonAnterior").onclick = botonAnteriorPagina;
-function numeroPagina(avanzaORetrocede) {
-  let paginas = document.querySelector("#selectorPagina");
-
-  if (!avanzaORetrocede && paginaNumero > 1) {
-    paginaNumero -= 1;
-
-    paginas.value = paginaNumero;
-  } else {
-    paginaNumero += 1;
-
-    paginas.value = paginaNumero;
-  }
-}
-
-function irAPagina() {
-  let paginas = document.querySelector("#selectorPagina");
-  console.log(Number(paginas.value));
-  llamarPokemones(
-    "https://pokeapi.co/api/v2/pokemon?offset=" +
-      20 * Number(paginas.value - 1) +
-      "&limit=20"
-  );
-  paginaNumero = Number(paginas.value);
-}
-document.querySelector("#irAPagina").onclick = irAPagina;
-
-contendenorPokemones.onclick = seleccionarPokemon;
