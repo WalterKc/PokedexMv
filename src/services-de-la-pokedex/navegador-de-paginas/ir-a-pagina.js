@@ -1,13 +1,14 @@
 export let paginaNumero = 1;
-import { cantidadPaginasPokemons } from "../Cambio de pagina/Logica de paginacion/CreoPokedex.js";
-import { controlPaginasPokedex } from "../Cambio de pagina/CambioPaginaPokedex.js";
+import { cantidadPaginasPokemons } from "../../ui-de-la-pokedex/ui-de-la-pokedex.js";
+import { obtengoPaginaDeLaPokedex } from "../cambio-pagina-pokedex.js";
+import { selectorPagina } from "../../api/guardo-datos-api.js";
+import { limiteSelector } from "../../api/guardo-datos-api.js";
+
 export function irAPagina() {
   let paginas = document.querySelector("#selectorPagina");
   console.log(Number(paginas.value));
-  controlPaginasPokedex(
-    "https://pokeapi.co/api/v2/pokemon?offset=" +
-      20 * Number(paginas.value - 1) +
-      "&limit=20"
+  obtengoPaginaDeLaPokedex(
+    selectorPagina + 20 * Number(paginas.value - 1) + limiteSelector
   );
   paginaNumero = Number(paginas.value);
   if (Number(paginas.value) === cantidadPaginasPokemons) {
@@ -42,3 +43,5 @@ export function numeroPagina(avanzaORetrocede) {
   }
 }
 //preguntar sobre  exportar y modificar variable global
+//tengo que modificar lo de arriba
+function irAPagina2() {}

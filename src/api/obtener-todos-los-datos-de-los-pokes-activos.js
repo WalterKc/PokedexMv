@@ -1,4 +1,4 @@
-import { todosLosDatos } from "./GuardoDatosApi.js";
+import { todosLosDatos } from "./guardo-datos-api.js";
 export async function obtenerTodosLosDatosDeLosPokemonsAMostrar(
   arrayPokemonsDatos
 ) {

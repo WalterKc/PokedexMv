@@ -3,7 +3,10 @@ export let arrayDatos = [];
 export let todosLosDatos = [];
 export let siguienteLista = "";
 export let listaAnterior = "";
-import { obtenerTodosLosDatosDeLosPokemonsAMostrar } from "./ObtenerTodosLosDatosDeLosPokesActivos.js";
+export let primeraDireccion = "https://pokeapi.co/api/v2/pokemon";
+export let selectorPagina = "https://pokeapi.co/api/v2/pokemon?offset=";
+export let limiteSelector = "&limit=20";
+import { obtenerTodosLosDatosDeLosPokemonsAMostrar } from "./obtener-todos-los-datos-de-los-pokes-activos.js";
 
 export async function guardoDatosapi(api) {
   arrayPokemons = [];

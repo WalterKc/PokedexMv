@@ -1,4 +1,4 @@
-function crearElementosDeLaLista(elementoPadre) {
+function creoElementosDeLaLista(elementoPadre) {
   let div = document.createElement("div");
   let id = document.createAttribute("id");
   let clase = document.createAttribute("class");
@@ -8,8 +8,8 @@ function crearElementosDeLaLista(elementoPadre) {
   div.setAttributeNode(clase);
   elementoPadre.appendChild(div);
 }
-export function crearLista(listaAReplicar, vecesAReplicar) {
+export function creoLista(listaAReplicar, vecesAReplicar) {
   for (let i = 0; i < vecesAReplicar.length; i++) {
-    crearElementosDeLaLista(listaAReplicar);
+    creoElementosDeLaLista(listaAReplicar);
   }
 }

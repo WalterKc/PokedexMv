@@ -1,11 +1,12 @@
-import { numeroPagina } from "./IrAPagina.js";
-import { listaAnterior } from "../Api/GuardoDatosApi.js";
-import { controlPaginasPokedex } from "../Cambio de pagina/CambioPaginaPokedex.js";
-import { cantidadPaginasPokemons } from "../Cambio de pagina/Logica de paginacion/CreoPokedex.js";
+import { numeroPagina } from "../navegador-de-paginas/ir-a-pagina.js";
+import { listaAnterior } from "../../api/guardo-datos-api.js";
+import { obtengoPaginaDeLaPokedex } from "../cambio-pagina-pokedex.js";
+import { cantidadPaginasPokemons } from "../../ui-de-la-pokedex/ui-de-la-pokedex.js";
+
 export function botonAnteriorPagina() {
   let paginaMinima = document.querySelector("#selectorPagina");
 
-  controlPaginasPokedex(listaAnterior);
+  obtengoPaginaDeLaPokedex(listaAnterior);
   numeroPagina(false);
   if (Number(paginaMinima.value) === 1) {
     document.querySelector("#botonAnterior").hidden = true;

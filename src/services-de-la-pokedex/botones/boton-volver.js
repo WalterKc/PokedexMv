@@ -1,4 +1,4 @@
-import { contendenorPokemones } from "../Cambio de pagina/Logica de paginacion/CreoPokedex.js";
+import { contendenorPokemones } from "../../ui-de-la-pokedex/ui-de-la-pokedex.js";
 export function botonVolver() {
   contendenorPokemones.hidden = false;
   document.querySelector("#pokemonSelecionado").hidden = true;

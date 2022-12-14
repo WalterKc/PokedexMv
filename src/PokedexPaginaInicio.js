@@ -1,6 +1,7 @@
-import { controlPaginasPokedex } from "./Cambio de pagina/CambioPaginaPokedex.js";
-let primeraDireccion = "https://pokeapi.co/api/v2/pokemon";
+import { obtengoPaginaDeLaPokedex } from "./services-de-la-pokedex/cambio-pagina-pokedex.js";
+//let primeraDireccion = "https://pokeapi.co/api/v2/pokemon";
+import { primeraDireccion } from "./api/guardo-datos-api.js";
 
 export async function inicializar() {
-  await controlPaginasPokedex(primeraDireccion);
+  await obtengoPaginaDeLaPokedex(primeraDireccion);
 }
