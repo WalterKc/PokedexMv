@@ -1,0 +1,11 @@
+import { botonSiguientePagina } from "../services-de-la-pokedex/botones/boton-siguiente.js";
+import { botonAnteriorPagina } from "../services-de-la-pokedex/botones/boton-anterior.js";
+import { seleccionoPokemon } from "../services-de-la-pokedex/seleciono-pokemon/seleciono-un-pokemon.js";
+import { irAPagina } from "../services-de-la-pokedex/navegador-de-paginas/ir-a-pagina.js";
+import { botonVolver } from "../services-de-la-pokedex/botones/boton-volver.js";
+import { contendenorPokemones } from "./ui-de-la-pokedex.js";
+document.querySelector("#botonSiguiente").onclick = botonSiguientePagina;
+document.querySelector("#botonAnterior").onclick = botonAnteriorPagina;
+contendenorPokemones.onclick = seleccionoPokemon;
+document.querySelector("#irAPagina").onclick = irAPagina;
+document.querySelector("#botonVolver").onclick = botonVolver;
