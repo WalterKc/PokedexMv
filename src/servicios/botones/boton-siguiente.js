@@ -3,7 +3,7 @@ import { numeroPagina } from "../navegador-de-paginas/ir-a-pagina.js";
 import { siguienteLista } from "../../api/guardo-datos-api.js";
 
 import { obtengoPaginaDeLaPokedex } from "../cambio-pagina-pokedex.js";
-import { cantidadPaginasPokemons } from "../../ui-de-la-pokedex/ui-de-la-pokedex.js";
+import { cantidadPaginasPokemons } from "../../ui/ui-de-la-pokedex.js";
 
 export function botonSiguientePagina() {
   let paginaMaxima = document.querySelector("#selectorPagina");

@@ -1,4 +1,4 @@
-import { contendenorPokemones } from "../../ui-de-la-pokedex/ui-de-la-pokedex.js";
+import { contendenorPokemones } from "../../ui/ui-de-la-pokedex.js";
 import { obtengoDatosDeLaApi } from "../../api/llamo-a-la-api.js";
 import { primeraDireccion } from "../../api/guardo-datos-api.js";
 

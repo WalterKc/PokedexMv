@@ -1,4 +1,4 @@
-import { obtengoPaginaDeLaPokedex } from "./services-de-la-pokedex/cambio-pagina-pokedex.js";
+import { obtengoPaginaDeLaPokedex } from "./servicios/cambio-pagina-pokedex.js";
 //let primeraDireccion = "https://pokeapi.co/api/v2/pokemon";
 import { primeraDireccion } from "./api/guardo-datos-api.js";
 

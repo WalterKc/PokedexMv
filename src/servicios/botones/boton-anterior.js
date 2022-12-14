@@ -1,7 +1,7 @@
 import { numeroPagina } from "../navegador-de-paginas/ir-a-pagina.js";
 import { listaAnterior } from "../../api/guardo-datos-api.js";
 import { obtengoPaginaDeLaPokedex } from "../cambio-pagina-pokedex.js";
-import { cantidadPaginasPokemons } from "../../ui-de-la-pokedex/ui-de-la-pokedex.js";
+import { cantidadPaginasPokemons } from "../../ui/ui-de-la-pokedex.js";
 
 export function botonAnteriorPagina() {
   let paginaMinima = document.querySelector("#selectorPagina");

@@ -1,5 +1,5 @@
 export let paginaNumero = 1;
-import { cantidadPaginasPokemons } from "../../ui-de-la-pokedex/ui-de-la-pokedex.js";
+import { cantidadPaginasPokemons } from "../../ui/ui-de-la-pokedex.js";
 import { obtengoPaginaDeLaPokedex } from "../cambio-pagina-pokedex.js";
 import { selectorPagina } from "../../api/guardo-datos-api.js";
 import { limiteSelector } from "../../api/guardo-datos-api.js";
