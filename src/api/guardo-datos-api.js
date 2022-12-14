@@ -6,7 +6,7 @@ export let listaAnterior = "";
 export let primeraDireccion = "https://pokeapi.co/api/v2/pokemon";
 export let selectorPagina = "https://pokeapi.co/api/v2/pokemon?offset=";
 export let limiteSelector = "&limit=20";
-import { obtenerTodosLosDatosDeLosPokemonsAMostrar } from "./obtener-todos-los-datos-de-los-pokes-activos.js";
+//import { obtenerTodosLosDatosDeLosPokemonsAMostrar } from "./obtener-todos-los-datos-de-los-pokes-activos.js";
 
 export async function guardoDatosapi(api) {
   arrayPokemons = [];
@@ -20,4 +20,15 @@ export async function guardoDatosapi(api) {
   listaAnterior = api.previous;
 
   await obtenerTodosLosDatosDeLosPokemonsAMostrar(arrayDatos);
+}
+
+async function obtenerTodosLosDatosDeLosPokemonsAMostrar(arrayPokemonsDatos) {
+  for (let i = 0; i < arrayPokemonsDatos.length; i++) {
+    await fetch(arrayPokemonsDatos[i].url)
+      .then((respuesta) => respuesta.json())
+
+      .then((respuesta) => {
+        todosLosDatos.push(respuesta);
+      });
+  }
 }
