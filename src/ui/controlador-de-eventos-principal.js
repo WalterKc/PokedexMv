@@ -116,7 +116,7 @@ function controlGeneralBotonAnterior() {
   controlBotonAnterior();
 }
 function controlGeneralSelectorPagina() {
-  irAPagina(selectorPagina);
+  irAPagina(selectorPagina.value);
   controloIrAPagina();
 }
 
