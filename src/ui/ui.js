@@ -1,18 +1,14 @@
-/**
- * tengo que hacer lo mismo aca, tengo que juntar lo todo(no se si la carpeta tambien), y ver si funca
- * LISTO, ahora tengo que hacer mas sencillo esto
- * LISTO optimizacion, ahora, verbos infinitivos
- * los verbos en infinitibos terminar en ar er ir
- */
 let filas = document.querySelectorAll("#fila");
 let estaLaPrimeraListaCreada = false;
 export let contendenorPokemones = document.querySelector(
   "#contendenorPokemones"
 );
 export let cantidadPaginasPokemons = 0;
-
 import { todosLosDatos } from "../api/api.js";
-
+import { obtenerDatosDelPokemonSelecionado } from "../servicios/servicio.js";
+import { irAPagina } from "../servicios/servicio.js";
+let paginaNumero = 1;
+let selectorPagina = document.querySelector("#selectorPagina");
 export async function crearLaUiDeLaPokedex(api) {
   if (!estaLaPrimeraListaCreada) {
     crearLista(contendenorPokemones, api.results);
@@ -95,16 +91,6 @@ async function colocarImagenesDeLosPokemons(listaDeDatosDePokemones) {
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-
-import { botonSiguientePagina } from "../servicios/servicio.js";
-import { botonAnteriorPagina } from "../servicios/servicio.js";
-import { obtenerDatosDelPokemonSelecionado } from "../servicios/servicio.js";
-import { irAPagina } from "../servicios/servicio.js";
-let paginaNumero = 1;
-let selectorPagina = document.querySelector("#selectorPagina");
 async function controlarVisibilidadBotonAnterior() {
   if (Number(selectorPagina.value) === 1) {
     document.querySelector("#botonAnterior").hidden = true;
@@ -114,7 +100,6 @@ async function controlarVisibilidadBotonAnterior() {
   if (Number(selectorPagina.value) < cantidadPaginasPokemons) {
     document.querySelector("#botonSiguiente").hidden = false;
   }
-  console.log(Number(selectorPagina.value));
 }
 async function controlarVisibilidadBotonSiguiente() {
   if (Number(selectorPagina.value) === cantidadPaginasPokemons) {
@@ -208,27 +193,16 @@ async function controlarUiAlSelecionarUnPokemon(valorAEnviar) {
     pokemonActual.height / 10 + " Mts";
 }
 
-function controlGeneralBotonSiguiente() {
-  botonSiguientePagina();
-  controlarVisibilidadBotonSiguiente();
-}
-function controlGeneralBotonAnterior() {
-  botonAnteriorPagina();
-  controlarVisibilidadBotonAnterior();
-}
 import { cambiarPaginaSiguienteAnterior } from "../servicios/servicio.js";
 function controlarSelectorPagina() {
   irAPagina(selectorPagina.value);
   controlarVisibilidadBotonesAlUsarIrAPagina();
 }
 function cambiarPagina(event) {
-  console.log(event.target.id);
-
   if (event.target.id === "botonSiguiente") {
     cambiarPaginaSiguienteAnterior(true);
     controlarVisibilidadBotonSiguiente();
   } else if (event.target.id === "irAPagina") {
-    //console.log("boton");
     controlarSelectorPagina();
   } else if (event.target.id === "controlarVisibilidadBotonVolver") {
     controlarVisibilidadBotonVolver();
@@ -238,12 +212,9 @@ function cambiarPagina(event) {
   }
 }
 
-//document.querySelector("#botonSiguiente").onclick =controlGeneralBotonSiguiente;
-//document.querySelector("#botonAnterior").onclick = controlGeneralBotonAnterior;
 contendenorPokemones.onclick = seleccionarPokemon;
 document.querySelector("#botonSiguiente").onclick = cambiarPagina;
 document.querySelector("#botonAnterior").onclick = cambiarPagina;
 document.querySelector("#irAPagina").onclick = cambiarPagina;
-//document.querySelector("#irAPagina").onclick = controlarSelectorPagina;
 document.querySelector("#controlarVisibilidadBotonVolver").onclick =
   cambiarPagina;

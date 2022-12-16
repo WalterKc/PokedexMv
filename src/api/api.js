@@ -1,8 +1,3 @@
-/**
- * primero vamos a unir toda la api, sin cambios de nombre, todo junto, y vamos a exportarla y ver si funca o no
- *LISTO
- */
-
 export let arrayPokemons = [];
 export let arrayDatos = [];
 export let todosLosDatos = [];
@@ -11,7 +6,6 @@ export let listaAnterior = "";
 export let primeraDireccion = "https://pokeapi.co/api/v2/pokemon";
 export let selectorPagina = "https://pokeapi.co/api/v2/pokemon?offset=";
 export let limiteSelector = "&limit=20";
-
 export async function obtenerDatosDeLaApi(direccion) {
   let api = (await fetch(direccion)).json();
 
@@ -28,7 +22,6 @@ export async function guardarDatosApi(api) {
   }
   siguienteLista = api.next;
   listaAnterior = api.previous;
-
   await obtenerTodosLosDatosDeLosPokemonsAMostrar(arrayDatos);
 }
 
