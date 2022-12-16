@@ -1,4 +1,4 @@
-export async function colocoImagenesDeLosPokemons(listaDeDatosDePokemones) {
+export async function colocarImagenesDeLosPokemons(listaDeDatosDePokemones) {
   let listaPokemonesActivos = document.querySelectorAll(
     "#contendenorPokemones #pokemon"
   );

@@ -1,7 +1,8 @@
-import { siguienteLista } from "../../api/guardo-datos-api.js";
-import { obtengoPaginaDeLaPokedex } from "../cambio-pagina-pokedex.js";
-import { numeroPagina } from "../../ui/controlador-de-eventos-principal.js";
+//import { siguienteLista } from "../../api/guardo-datos-api.js";
+import { obtenerPaginaDeLaPokedex } from "../cambio-pagina-pokedex.js";
+import { controlarPaginaNumero } from "../../ui/controlador-de-eventos-principal.js";
+import { siguienteLista } from "../../api/api.js";
 export function botonSiguientePagina() {
-  obtengoPaginaDeLaPokedex(siguienteLista);
-  numeroPagina(true);
+  obtenerPaginaDeLaPokedex(siguienteLista);
+  controlarPaginaNumero(true);
 }

@@ -9,7 +9,7 @@ describe("empty spec", () => {
     cy.get("#fila #pokemon").first().click();
     cy.wait(1000);
     cy.get("#contendenorPokemones").should("have.attr", "hidden");
-    cy.get("#botonVolver").click();
+    cy.get("#controlarVisibilidadBotonVolver").click();
     cy.wait(1000);
     cy.get("#pokemonSelecionado").should("have.attr", "hidden");
     cy.get("#botonAnterior").click().should("have.attr", "hidden");

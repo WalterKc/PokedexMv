@@ -1,12 +1,17 @@
-import { botonSiguientePagina } from "../servicios/botones/boton-siguiente.js";
-import { botonAnteriorPagina } from "../servicios/botones/boton-anterior.js";
+//import { botonSiguientePagina } from "../servicios/botones/boton-siguiente.js";
+//import { botonAnteriorPagina } from "../servicios/botones/boton-anterior.js";
 import { cantidadPaginasPokemons } from "./ui-de-la-pokedex.js";
-import { datosDelPokemonSelecionado } from "../servicios/seleciono-pokemon/seleciono-un-pokemon.js";
-import { irAPagina } from "../servicios/navegador-de-paginas/ir-a-pagina.js";
+//import { obtenerDatosDelPokemonSelecionado } from "../servicios/seleciono-pokemon/seleciono-un-pokemon.js";
+//import { irAPagina } from "../servicios/navegador-de-paginas/ir-a-pagina.js";
 import { contendenorPokemones } from "./ui-de-la-pokedex.js";
+import { botonSiguientePagina } from "../servicios/servicio.js";
+import { botonAnteriorPagina } from "../servicios/servicio.js";
+import { obtenerDatosDelPokemonSelecionado } from "../servicios/servicio.js";
+import { irAPagina } from "../servicios/servicio.js";
+
 let paginaNumero = 1;
 let selectorPagina = document.querySelector("#selectorPagina");
-async function controlBotonAnterior() {
+async function controlarVisibilidadBotonAnterior() {
   if (Number(selectorPagina.value) === 1) {
     document.querySelector("#botonAnterior").hidden = true;
   } else {
@@ -16,7 +21,7 @@ async function controlBotonAnterior() {
     document.querySelector("#botonSiguiente").hidden = false;
   }
 }
-async function controlBotonSiguiente() {
+async function controlarVisibilidadBotonSiguiente() {
   if (Number(selectorPagina.value) === cantidadPaginasPokemons) {
     document.querySelector("#botonSiguiente").hidden = true;
   } else {
@@ -26,15 +31,15 @@ async function controlBotonSiguiente() {
     document.querySelector("#botonAnterior").hidden = false;
   }
 }
-async function botonVolver() {
+async function controlarVisibilidadBotonVolver() {
   contendenorPokemones.hidden = false;
   document.querySelector("#pokemonSelecionado").hidden = true;
   selectorPagina.value = paginaNumero;
-  await controlBotonAnterior();
-  await controlBotonSiguiente();
-  document.querySelector("#botonVolver").hidden = true;
+  await controlarVisibilidadBotonAnterior();
+  await controlarVisibilidadBotonSiguiente();
+  document.querySelector("#controlarVisibilidadBotonVolver").hidden = true;
 }
-async function controloIrAPagina() {
+async function controlarVisibilidadBotonesAlUsarIrAPagina() {
   paginaNumero = Number(selectorPagina.value);
   if (Number(selectorPagina.value) === cantidadPaginasPokemons) {
     document.querySelector("#botonSiguiente").hidden = true;
@@ -53,7 +58,7 @@ async function controloIrAPagina() {
     document.querySelector("#botonSiguiente").hidden = false;
   }
 }
-export async function numeroPagina(avanzaORetrocede) {
+export async function controlarPaginaNumero(avanzaORetrocede) {
   if (!avanzaORetrocede && paginaNumero > 1) {
     paginaNumero -= 1;
 
@@ -64,7 +69,7 @@ export async function numeroPagina(avanzaORetrocede) {
     selectorPagina.value = paginaNumero;
   }
 }
-async function seleccionoPokemonNuevo(event) {
+async function seleccionarPokemon(event) {
   let valorAEnviar = "";
 
   if (event.target.innerText === "") {
@@ -75,10 +80,10 @@ async function seleccionoPokemonNuevo(event) {
     valorAEnviar = event.target.innerText;
   }
 
-  await controloSelector(valorAEnviar);
+  await controlarUiAlSelecionarUnPokemon(valorAEnviar);
 }
-async function controloSelector(valorAEnviar) {
-  let pokemonActual = await datosDelPokemonSelecionado(valorAEnviar);
+async function controlarUiAlSelecionarUnPokemon(valorAEnviar) {
+  let pokemonActual = await obtenerDatosDelPokemonSelecionado(valorAEnviar);
   contendenorPokemones.hidden = true;
 
   document.querySelector("#pokemonSelecionado").hidden = false;
@@ -87,7 +92,7 @@ async function controloSelector(valorAEnviar) {
     pokemonActual.sprites.front_default;
   document.querySelector("#botonAnterior").hidden = true;
   document.querySelector("#botonSiguiente").hidden = true;
-  document.querySelector("#botonVolver").hidden = false;
+  document.querySelector("#controlarVisibilidadBotonVolver").hidden = false;
 
   if (pokemonActual.types.length > 1) {
     document.querySelector("#tipo").innerText =
@@ -109,20 +114,21 @@ async function controloSelector(valorAEnviar) {
 
 function controlGeneralBotonSiguiente() {
   botonSiguientePagina();
-  controlBotonSiguiente();
+  controlarVisibilidadBotonSiguiente();
 }
 function controlGeneralBotonAnterior() {
   botonAnteriorPagina();
-  controlBotonAnterior();
+  controlarVisibilidadBotonAnterior();
 }
-function controlGeneralSelectorPagina() {
+function controlarSelectorPagina() {
   irAPagina(selectorPagina.value);
-  controloIrAPagina();
+  controlarVisibilidadBotonesAlUsarIrAPagina();
 }
 
 document.querySelector("#botonSiguiente").onclick =
   controlGeneralBotonSiguiente;
 document.querySelector("#botonAnterior").onclick = controlGeneralBotonAnterior;
-contendenorPokemones.onclick = seleccionoPokemonNuevo;
-document.querySelector("#irAPagina").onclick = controlGeneralSelectorPagina;
-document.querySelector("#botonVolver").onclick = botonVolver;
+contendenorPokemones.onclick = seleccionarPokemon;
+document.querySelector("#irAPagina").onclick = controlarSelectorPagina;
+document.querySelector("#controlarVisibilidadBotonVolver").onclick =
+  controlarVisibilidadBotonVolver;

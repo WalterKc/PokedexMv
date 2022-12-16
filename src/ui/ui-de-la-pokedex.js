@@ -4,25 +4,26 @@ export let contendenorPokemones = document.querySelector(
   "#contendenorPokemones"
 );
 export let cantidadPaginasPokemons = 0;
-import { creoLista } from "./elementos-de-la-ui/creo-listas.js";
-import { creoPaginasDePokemons } from "./elementos-de-la-ui/creo-paginas-de-pokemons.js";
-import { ordenoPokemones } from "./elementos-de-la-ui/ordeno-los-pokemons.js";
-import { colocoImagenesDeLosPokemons } from "./elementos-de-la-ui/coloco-imgenes-de-pokemons.js";
-import { todosLosDatos } from "../api/guardo-datos-api.js";
-import { colocoPokemonEnLaLista } from "./elementos-de-la-ui/coloco-pokemon-en-las-listas.js";
+import { crearLista } from "./elementos-de-la-ui/creo-listas.js";
+import { crearPaginasDePokemons } from "./elementos-de-la-ui/creo-paginas-de-pokemons.js";
+import { ordenarPokemones } from "./elementos-de-la-ui/ordeno-los-pokemons.js";
+import { colocarImagenesDeLosPokemons } from "./elementos-de-la-ui/coloco-imgenes-de-pokemons.js";
+//import { todosLosDatos } from "../api/guardo-datos-api.js";
+import { todosLosDatos } from "../api/api.js";
+import { colocarPokemonEnLaLista } from "./elementos-de-la-ui/coloco-pokemon-en-las-listas.js";
 
-export async function creoLaUiDeLaPokedex(api) {
+export async function crearLaUiDeLaPokedex(api) {
   if (!estaLaPrimeraListaCreada) {
-    creoLista(contendenorPokemones, api.results);
-    colocoPokemonEnLaLista(api.results);
+    crearLista(contendenorPokemones, api.results);
+    colocarPokemonEnLaLista(api.results);
     cantidadPaginasPokemons = Math.floor(api.count / 20);
-    creoPaginasDePokemons(cantidadPaginasPokemons);
+    crearPaginasDePokemons(cantidadPaginasPokemons);
     document.querySelector("#botonAnterior").hidden = true;
 
     estaLaPrimeraListaCreada = true;
   } else {
-    colocoPokemonEnLaLista(api.results);
+    colocarPokemonEnLaLista(api.results);
   }
-  ordenoPokemones(filas);
-  colocoImagenesDeLosPokemons(todosLosDatos);
+  ordenarPokemones(filas);
+  colocarImagenesDeLosPokemons(todosLosDatos);
 }

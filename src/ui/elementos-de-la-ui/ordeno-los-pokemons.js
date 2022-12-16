@@ -1,4 +1,4 @@
-export function ordenoPokemones(filasOrdenadas) {
+export function ordenarPokemones(filasOrdenadas) {
   let listaPokemonesActivos = document.querySelectorAll(
     "#contendenorPokemones #pokemon"
   );

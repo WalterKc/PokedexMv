@@ -1,4 +1,4 @@
-export async function colocoPokemonEnLaLista(Nombres) {
+export async function colocarPokemonEnLaLista(Nombres) {
   let listaPokemonesActivos = document.querySelectorAll(
     "#contendenorPokemones #pokemon"
   );

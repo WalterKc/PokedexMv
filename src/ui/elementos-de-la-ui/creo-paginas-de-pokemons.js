@@ -1,4 +1,4 @@
-export function creoPaginasDePokemons(cantidadDePaginas) {
+export function crearPaginasDePokemons(cantidadDePaginas) {
   let paginas = document.querySelector("#selectorPagina");
   for (let i = 0; i < cantidadDePaginas; i++) {
     let option = document.createElement("option");
