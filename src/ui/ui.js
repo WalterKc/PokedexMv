@@ -8,7 +8,7 @@ export let cantidadPaginasPokemons = 0;
 import { entregarDatosPagina } from "../servicios/servicio.js";
 let paginaNumero = 1;
 let selectorPagina = document.querySelector("#selectorPagina");
-export async function crearLaUiDeLaPokedex(reciboDatosDeLaApi) {
+export async function crearUiPokedex(reciboDatosDeLaApi) {
   let api = await reciboDatosDeLaApi;
 
   if (!estaLaPrimeraListaCreada) {
@@ -22,7 +22,7 @@ export async function crearLaUiDeLaPokedex(reciboDatosDeLaApi) {
     colocarPokemonEnLaLista(api.results);
   }
   ordenarPokemones(filas);
-  colocarImagenesDeLosPokemons(await entregarDatosPagina());
+  colocarImagenesPokemons(await entregarDatosPagina());
 }
 
 function crearElementosDeLaLista(elementoPadre) {
@@ -76,7 +76,7 @@ function ordenarPokemones(filasOrdenadas) {
   }
 }
 
-async function colocarImagenesDeLosPokemons(listaDeDatosDePokemones) {
+async function colocarImagenesPokemons(listaDeDatosDePokemones) {
   let listaPokemonesActivos = document.querySelectorAll(
     "#contendenorPokemones #pokemon"
   );
@@ -202,7 +202,7 @@ async function controlarSelectorPagina() {
   controlarVisibilidadBotonesCambioPagina();
   let dato = await entregarDatosApi(await enviarPagina(selectorPagina.value));
 
-  crearLaUiDeLaPokedex(
+  crearUiPokedex(
     await entregarDatosApi(await enviarPagina(selectorPagina.value))
   );
 }
@@ -214,7 +214,7 @@ async function cambiarPagina(event) {
 
     let dato = CambiarPagina(true);
 
-    crearLaUiDeLaPokedex(await entregarDatosApi(dato));
+    crearUiPokedex(await entregarDatosApi(dato));
   } else if (event.target.id === "irAPagina") {
     controlarSelectorPagina();
   } else if (event.target.id === "controlarVisibilidadBotonVolver") {
