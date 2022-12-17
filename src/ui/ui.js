@@ -4,18 +4,12 @@ export let contendenorPokemones = document.querySelector(
   "#contendenorPokemones"
 );
 export let cantidadPaginasPokemons = 0;
-//ESTE IMPORT DE LA API, ESTA MAL
-import { todosLosDatos } from "../api/api.js";
-import { obtenerDatosDelPokemonSelecionado } from "../servicios/servicio.js";
-import { irAPagina } from "../servicios/servicio.js";
-import { entregarDatosDeLaPagina } from "../servicios/servicio.js";
+
+import { entregarDatosPagina } from "../servicios/servicio.js";
 let paginaNumero = 1;
 let selectorPagina = document.querySelector("#selectorPagina");
-//este export de crear.... esta mal
 export async function crearLaUiDeLaPokedex(reciboDatosDeLaApi) {
   let api = await reciboDatosDeLaApi;
-  //guarda con los await
-  console.log(api);
 
   if (!estaLaPrimeraListaCreada) {
     crearLista(contendenorPokemones, api.results);
@@ -28,7 +22,7 @@ export async function crearLaUiDeLaPokedex(reciboDatosDeLaApi) {
     colocarPokemonEnLaLista(api.results);
   }
   ordenarPokemones(filas);
-  colocarImagenesDeLosPokemons(await entregarDatosDeLaPagina());
+  colocarImagenesDeLosPokemons(await entregarDatosPagina());
 }
 
 function crearElementosDeLaLista(elementoPadre) {
@@ -127,7 +121,7 @@ async function controlarVisibilidadBotonVolver() {
   await controlarVisibilidadBotonSiguiente();
   document.querySelector("#controlarVisibilidadBotonVolver").hidden = true;
 }
-async function controlarVisibilidadBotonesAlUsarIrAPagina() {
+async function controlarVisibilidadBotonesCambioPagina() {
   paginaNumero = Number(selectorPagina.value);
   if (Number(selectorPagina.value) === cantidadPaginasPokemons) {
     document.querySelector("#botonSiguiente").hidden = true;
@@ -168,14 +162,11 @@ async function seleccionarPokemon(event) {
     valorAEnviar = event.target.innerText;
   }
 
-  await controlarUiAlSelecionarUnPokemon(valorAEnviar);
+  await controlarUiSelecionarPokemon(valorAEnviar);
 }
-///tengo que cambiar este tambien
-import { obtenerPokemonSelecionadoV2 } from "../servicios/servicio.js";
-async function controlarUiAlSelecionarUnPokemon(valorAEnviar) {
-  //let pokemonActual = await obtenerDatosDelPokemonSelecionado(valorAEnviar);
-
-  let pokemonActual = await obtenerPokemonSelecionadoV2(valorAEnviar);
+import { enviarPokemon } from "../servicios/servicio.js";
+async function controlarUiSelecionarPokemon(valorAEnviar) {
+  let pokemonActual = await enviarPokemon(valorAEnviar);
   contendenorPokemones.hidden = true;
 
   document.querySelector("#pokemonSelecionado").hidden = false;
@@ -204,48 +195,35 @@ async function controlarUiAlSelecionarUnPokemon(valorAEnviar) {
     pokemonActual.height / 10 + " Mts";
 }
 
-import { cambiarPaginaSiguienteAnterior } from "../servicios/servicio.js";
-//a este tambien lo tengo que cambiar
-import { irAPaginaV2 } from "../servicios/servicio.js";
-import { entregarDatosDeLaApi } from "../servicios/servicio.js";
+import { enviarPagina } from "../servicios/servicio.js";
+import { entregarDatosApi } from "../servicios/servicio.js";
 async function controlarSelectorPagina() {
-  //irAPagina(selectorPagina.value);
-  //await crearLaUiDeLaPokedex(irAPaginaV2(selectorPagina.value));
-  await irAPaginaV2(selectorPagina.value);
-  console.log(await irAPaginaV2(selectorPagina.value));
-  controlarVisibilidadBotonesAlUsarIrAPagina();
-  let dato = await entregarDatosDeLaApi(
-    await irAPaginaV2(selectorPagina.value)
-  );
-  console.log(dato.next);
-  /*
+  await enviarPagina(selectorPagina.value);
+  controlarVisibilidadBotonesCambioPagina();
+  let dato = await entregarDatosApi(await enviarPagina(selectorPagina.value));
+
   crearLaUiDeLaPokedex(
-    await entregarDatosDeLaApi(await irAPaginaV2(selectorPagina.value))
+    await entregarDatosApi(await enviarPagina(selectorPagina.value))
   );
-  */
 }
-import { cambiarPaginaSiguienteAnterior2 } from "../servicios/servicio.js";
+import { CambiarPagina } from "../servicios/servicio.js";
 async function cambiarPagina(event) {
   if (event.target.id === "botonSiguiente") {
-    //cambiarPaginaSiguienteAnterior(true);
     controlarPaginaNumero(true);
     controlarVisibilidadBotonSiguiente();
 
-    let dato = cambiarPaginaSiguienteAnterior2(true);
-    console.log(dato);
+    let dato = CambiarPagina(true);
 
-    crearLaUiDeLaPokedex(await entregarDatosDeLaApi(dato));
+    crearLaUiDeLaPokedex(await entregarDatosApi(dato));
   } else if (event.target.id === "irAPagina") {
     controlarSelectorPagina();
   } else if (event.target.id === "controlarVisibilidadBotonVolver") {
     controlarVisibilidadBotonVolver();
   } else {
-    //cambiarPaginaSiguienteAnterior(false);
     controlarPaginaNumero(false);
     controlarVisibilidadBotonAnterior();
 
-    let dato = cambiarPaginaSiguienteAnterior2(false);
-    console.log(dato);
+    let dato = CambiarPagina(false);
   }
 }
 
@@ -255,11 +233,3 @@ document.querySelector("#botonAnterior").onclick = cambiarPagina;
 document.querySelector("#irAPagina").onclick = cambiarPagina;
 document.querySelector("#controlarVisibilidadBotonVolver").onclick =
   cambiarPagina;
-/*
-import { enviosArraysApi } from "../servicios/servicio.js";
-
-async function test() {
-  console.log(await enviosArraysApi());
-}
-document.querySelector("#datos").onclick = test;
-*/
