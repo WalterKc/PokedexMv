@@ -1,13 +1,10 @@
 let filas = document.querySelectorAll("#fila");
 let estaLaPrimeraListaCreada = false;
-export let contendenorPokemones = document.querySelector(
-  "#contendenorPokemones"
-);
-export let cantidadPaginasPokemons = 0;
-
-import { entregarDatosPagina } from "../servicios/servicio.js";
+let contendenorPokemones = document.querySelector("#contendenorPokemones");
+let cantidadPaginasPokemons = 0;
 let paginaNumero = 1;
 let selectorPagina = document.querySelector("#selectorPagina");
+import { entregarDatosPagina } from "../servicios/servicio.js";
 export async function crearUiPokedex(reciboDatosDeLaApi) {
   let api = await reciboDatosDeLaApi;
 
@@ -140,7 +137,7 @@ async function controlarVisibilidadBotonesCambioPagina() {
     document.querySelector("#botonSiguiente").hidden = false;
   }
 }
-export async function controlarPaginaNumero(avanzaORetrocede) {
+async function controlarPaginaNumero(avanzaORetrocede) {
   if (!avanzaORetrocede && paginaNumero > 1) {
     paginaNumero -= 1;
 

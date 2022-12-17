@@ -19,7 +19,6 @@ export async function enviarPokemon(pokemon) {
   return pokemonDatos;
 }
 export function enviarPagina(numeroDePagina) {
-  console.log(Number(numeroDePagina));
   let nuevaUrl = EnviarUrlNueva(numeroDePagina);
   return nuevaUrl;
 }
