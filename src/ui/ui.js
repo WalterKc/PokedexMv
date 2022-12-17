@@ -13,19 +13,19 @@ export async function crearUiPokedex(reciboDatosDeLaApi) {
 
   if (!estaLaPrimeraListaCreada) {
     crearLista(contendenorPokemones, api.results);
-    colocarPokemonEnLaLista(api.results);
+    colocarPokemonEnLista(api.results);
     cantidadPaginasPokemons = Math.floor(api.count / 20);
     crearPaginasDePokemons(cantidadPaginasPokemons);
     document.querySelector("#botonAnterior").hidden = true;
     estaLaPrimeraListaCreada = true;
   } else {
-    colocarPokemonEnLaLista(api.results);
+    colocarPokemonEnLista(api.results);
   }
   ordenarPokemones(filas);
   colocarImagenesPokemons(await entregarDatosPagina());
 }
 
-function crearElementosDeLaLista(elementoPadre) {
+function crearElementosDeLista(elementoPadre) {
   let div = document.createElement("div");
   let id = document.createAttribute("id");
   let clase = document.createAttribute("class");
@@ -37,10 +37,10 @@ function crearElementosDeLaLista(elementoPadre) {
 }
 function crearLista(listaAReplicar, vecesAReplicar) {
   for (let i = 0; i < vecesAReplicar.length; i++) {
-    crearElementosDeLaLista(listaAReplicar);
+    crearElementosDeLista(listaAReplicar);
   }
 }
-async function colocarPokemonEnLaLista(Nombres) {
+async function colocarPokemonEnLista(Nombres) {
   let listaPokemonesActivos = document.querySelectorAll(
     "#contendenorPokemones #pokemon"
   );
