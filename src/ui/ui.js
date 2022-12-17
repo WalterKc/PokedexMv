@@ -4,12 +4,18 @@ export let contendenorPokemones = document.querySelector(
   "#contendenorPokemones"
 );
 export let cantidadPaginasPokemons = 0;
+//ESTE IMPORT DE LA API, ESTA MAL
 import { todosLosDatos } from "../api/api.js";
 import { obtenerDatosDelPokemonSelecionado } from "../servicios/servicio.js";
 import { irAPagina } from "../servicios/servicio.js";
 let paginaNumero = 1;
 let selectorPagina = document.querySelector("#selectorPagina");
-export async function crearLaUiDeLaPokedex(api) {
+//este export de crear.... esta mal
+export async function crearLaUiDeLaPokedex(reciboDatosDeLaApi) {
+  let api = await reciboDatosDeLaApi;
+  //guarda con los await
+  console.log(api);
+
   if (!estaLaPrimeraListaCreada) {
     crearLista(contendenorPokemones, api.results);
     colocarPokemonEnLaLista(api.results);
@@ -163,8 +169,12 @@ async function seleccionarPokemon(event) {
 
   await controlarUiAlSelecionarUnPokemon(valorAEnviar);
 }
+///tengo que cambiar este tambien
+import { obtenerPokemonSelecionadoV2 } from "../servicios/servicio.js";
 async function controlarUiAlSelecionarUnPokemon(valorAEnviar) {
-  let pokemonActual = await obtenerDatosDelPokemonSelecionado(valorAEnviar);
+  //let pokemonActual = await obtenerDatosDelPokemonSelecionado(valorAEnviar);
+
+  let pokemonActual = await obtenerPokemonSelecionadoV2(valorAEnviar);
   contendenorPokemones.hidden = true;
 
   document.querySelector("#pokemonSelecionado").hidden = false;
@@ -194,21 +204,47 @@ async function controlarUiAlSelecionarUnPokemon(valorAEnviar) {
 }
 
 import { cambiarPaginaSiguienteAnterior } from "../servicios/servicio.js";
-function controlarSelectorPagina() {
-  irAPagina(selectorPagina.value);
+//a este tambien lo tengo que cambiar
+import { irAPaginaV2 } from "../servicios/servicio.js";
+import { entregarDatosDeLaApi } from "../servicios/servicio.js";
+async function controlarSelectorPagina() {
+  //irAPagina(selectorPagina.value);
+  //await crearLaUiDeLaPokedex(irAPaginaV2(selectorPagina.value));
+  await irAPaginaV2(selectorPagina.value);
+  console.log(await irAPaginaV2(selectorPagina.value));
   controlarVisibilidadBotonesAlUsarIrAPagina();
+  let dato = await entregarDatosDeLaApi(
+    await irAPaginaV2(selectorPagina.value)
+  );
+  console.log(dato.next);
+  /*
+  crearLaUiDeLaPokedex(
+    await entregarDatosDeLaApi(await irAPaginaV2(selectorPagina.value))
+  );
+  */
 }
-function cambiarPagina(event) {
+import { cambiarPaginaSiguienteAnterior2 } from "../servicios/servicio.js";
+async function cambiarPagina(event) {
   if (event.target.id === "botonSiguiente") {
-    cambiarPaginaSiguienteAnterior(true);
+    //cambiarPaginaSiguienteAnterior(true);
+    controlarPaginaNumero(true);
     controlarVisibilidadBotonSiguiente();
+
+    let dato = cambiarPaginaSiguienteAnterior2(true);
+    console.log(dato);
+
+    crearLaUiDeLaPokedex(await entregarDatosDeLaApi(dato));
   } else if (event.target.id === "irAPagina") {
     controlarSelectorPagina();
   } else if (event.target.id === "controlarVisibilidadBotonVolver") {
     controlarVisibilidadBotonVolver();
   } else {
-    cambiarPaginaSiguienteAnterior(false);
+    //cambiarPaginaSiguienteAnterior(false);
+    controlarPaginaNumero(false);
     controlarVisibilidadBotonAnterior();
+
+    let dato = cambiarPaginaSiguienteAnterior2(false);
+    console.log(dato);
   }
 }
 
@@ -218,3 +254,11 @@ document.querySelector("#botonAnterior").onclick = cambiarPagina;
 document.querySelector("#irAPagina").onclick = cambiarPagina;
 document.querySelector("#controlarVisibilidadBotonVolver").onclick =
   cambiarPagina;
+/*
+import { enviosArraysApi } from "../servicios/servicio.js";
+
+async function test() {
+  console.log(await enviosArraysApi());
+}
+document.querySelector("#datos").onclick = test;
+*/
