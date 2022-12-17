@@ -8,6 +8,7 @@ export let cantidadPaginasPokemons = 0;
 import { todosLosDatos } from "../api/api.js";
 import { obtenerDatosDelPokemonSelecionado } from "../servicios/servicio.js";
 import { irAPagina } from "../servicios/servicio.js";
+import { entregarDatosDeLaPagina } from "../servicios/servicio.js";
 let paginaNumero = 1;
 let selectorPagina = document.querySelector("#selectorPagina");
 //este export de crear.... esta mal
@@ -27,7 +28,7 @@ export async function crearLaUiDeLaPokedex(reciboDatosDeLaApi) {
     colocarPokemonEnLaLista(api.results);
   }
   ordenarPokemones(filas);
-  colocarImagenesDeLosPokemons(todosLosDatos);
+  colocarImagenesDeLosPokemons(await entregarDatosDeLaPagina());
 }
 
 function crearElementosDeLaLista(elementoPadre) {
