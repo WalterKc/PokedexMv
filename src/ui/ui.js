@@ -119,7 +119,7 @@ async function controlarVisibilidadBotonVolver() {
   selectorPagina.value = paginaNumero;
   await controlarVisibilidadBotonAnterior();
   await controlarVisibilidadBotonSiguiente();
-  document.querySelector("#controlarVisibilidadBotonVolver").hidden = true;
+  document.querySelector("#botonVolver").hidden = true;
 }
 async function controlarVisibilidadBotonesCambioPagina() {
   paginaNumero = Number(selectorPagina.value);
@@ -175,7 +175,7 @@ async function controlarUiSelecionarPokemon(valorAEnviar) {
     pokemonActual.sprites.front_default;
   document.querySelector("#botonAnterior").hidden = true;
   document.querySelector("#botonSiguiente").hidden = true;
-  document.querySelector("#controlarVisibilidadBotonVolver").hidden = false;
+  document.querySelector("#botonVolver").hidden = false;
 
   if (pokemonActual.types.length > 1) {
     document.querySelector("#tipo").innerText =
@@ -217,7 +217,7 @@ async function cambiarPagina(event) {
     crearUiPokedex(await entregarDatosApi(dato));
   } else if (event.target.id === "irAPagina") {
     controlarSelectorPagina();
-  } else if (event.target.id === "controlarVisibilidadBotonVolver") {
+  } else if (event.target.id === "botonVolver") {
     controlarVisibilidadBotonVolver();
   } else {
     controlarPaginaNumero(false);
@@ -231,5 +231,4 @@ contendenorPokemones.onclick = seleccionarPokemon;
 document.querySelector("#botonSiguiente").onclick = cambiarPagina;
 document.querySelector("#botonAnterior").onclick = cambiarPagina;
 document.querySelector("#irAPagina").onclick = cambiarPagina;
-document.querySelector("#controlarVisibilidadBotonVolver").onclick =
-  cambiarPagina;
+document.querySelector("#botonVolver").onclick = cambiarPagina;
