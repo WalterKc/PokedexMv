@@ -1,8 +1,8 @@
 export let nombresDePokemons = [];
 export let arrayUrlPokemons = [];
 export let arrayEstadisticasYSpritesPokemones = [];
-export let siguienteLista = "";
-export let listaAnterior = "";
+export let urlPaginaSiguiente = "";
+export let urlPaginaAnterior = "";
 export let primeraDireccion = "https://pokeapi.co/api/v2/pokemon";
 export let selectorPagina = "https://pokeapi.co/api/v2/pokemon?offset=";
 export let limiteSelector = "&limit=20";
@@ -34,8 +34,8 @@ export async function guardarDatosApi(api) {
     nombresDePokemons.push(api.results[i].name);
     arrayUrlPokemons.push(api.results[i]);
   }
-  siguienteLista = api.next;
-  listaAnterior = api.previous;
+  urlPaginaSiguiente = api.next;
+  urlPaginaAnterior = api.previous;
   await obtenerTodaInfoPokemon(arrayUrlPokemons);
 }
 

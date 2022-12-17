@@ -108,7 +108,6 @@ async function controlarVisibilidadBotonSiguiente() {
   if (Number(selectorPagina.value) > 1) {
     document.querySelector("#botonAnterior").hidden = false;
   }
-  console.log(Number(selectorPagina.value));
 }
 async function controlarVisibilidadBotonVolver() {
   contendenorPokemones.hidden = false;
@@ -208,9 +207,7 @@ async function cambiarPagina(event) {
   if (event.target.id === "botonSiguiente") {
     controlarPaginaNumero(true);
     controlarVisibilidadBotonSiguiente();
-
     let dato = CambiarPagina(true);
-
     crearUiPokedex(await entregarDatosApi(dato));
   } else if (event.target.id === "irAPagina") {
     controlarSelectorPagina();
@@ -219,8 +216,8 @@ async function cambiarPagina(event) {
   } else {
     controlarPaginaNumero(false);
     controlarVisibilidadBotonAnterior();
-
     let dato = CambiarPagina(false);
+    crearUiPokedex(await entregarDatosApi(dato));
   }
 }
 

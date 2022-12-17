@@ -1,4 +1,4 @@
-import { listaAnterior, siguienteLista } from "../api/api.js";
+import { urlPaginaAnterior, urlPaginaSiguiente } from "../api/api.js";
 import { obtenerDatosDeLaApi } from "../api/api.js";
 import { guardarDatosApi } from "../api/api.js";
 import { arrayEstadisticasYSpritesPokemones } from "../api/api.js";
@@ -24,8 +24,8 @@ export function enviarPagina(numeroDePagina) {
 }
 export function CambiarPagina(selector) {
   if (selector) {
-    return siguienteLista;
+    return urlPaginaSiguiente;
   } else {
-    return listaAnterior;
+    return urlPaginaAnterior;
   }
 }
